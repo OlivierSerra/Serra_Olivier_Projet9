@@ -1,0 +1,21 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Maven / Gradle
+target/
+**/target/
+
+# Spring Boot build artifacts
+BOOT-INF/
+
+# Coverage / reports
+coverage/
+**/coverage/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

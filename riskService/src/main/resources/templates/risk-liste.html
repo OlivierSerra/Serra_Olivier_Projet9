@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<h1>Notes du patient <span th:text="${patientId}"></span></h1>
+
+<p>
+  <a th:href="@{/patients/ui/liste}"> Retour aux patients</a>
+</p>
+
+<p>
+  <a th:href="@{'/notes/ui/ajouter/' + ${patientId}}"> Ajouter une note</a>
+</p>
+
+<table border = "1">
+  <thead>
+  <tr>
+    <th>PatientID</th>
+    <th>Patient</th>
+    <th>note</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr th:each="note : ${notes}">
+    <td th:text="${note.id}"></td>
+    <td th:text="${note.note}"></td>
+    <td>
+      <a th:href="@{'/notes/ui/modifier/' + ${note.id}}">Modifier</a>
+      &nbsp;|&nbsp;
+      <a th:href="@{'/notes/ui/supprimer/' + ${note.id}}">Supprimer</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

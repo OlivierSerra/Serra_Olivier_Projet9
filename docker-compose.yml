@@ -1,0 +1,109 @@
+services:
+
+  mysqldb:
+    image: mysql:8
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysqldb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - medilabo-net
+
+  mongodb:
+    image: mongo:8.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_notes_data:/data/db
+    networks:
+      - medilabo-net
+
+  patientservice:
+    build:
+      context: .
+      dockerfile: demo/Dockerfile
+    container_name: patientservice
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mysqldb
+    ports:
+      - "8081:8081"
+    networks:
+      - medilabo-net
+    restart: on-failure
+
+  noteservice:
+    build:
+      context: .
+      dockerfile: notes/Dockerfile
+    container_name: noteservice
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8082:8082"
+    networks:
+      - medilabo-net
+
+  riskservice:
+    build:
+      context: .
+      dockerfile: riskService/Dockerfile
+    container_name: riskservice
+    depends_on:
+      - mongodb
+      - patientservice
+      - noteservice
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8083:8083"
+    networks:
+      - medilabo-net
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: gateway
+    depends_on:
+      - patientservice
+      - noteservice
+      - riskservice
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8090:8090"
+    networks:
+      - medilabo-net
+
+  frontservice:
+    build:
+      context: .
+      dockerfile: frontservice/Dockerfile
+    container_name: frontservice
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - patientservice
+      - noteservice
+      - riskservice
+      - gateway
+    ports:
+      - "8084:8080"
+    networks:
+      - medilabo-net
+
+networks:
+  medilabo-net:
+
+volumes:
+  mysql_data:
+  mongo_notes_data:

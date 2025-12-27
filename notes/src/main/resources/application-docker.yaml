@@ -1,0 +1,13 @@
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      database: notesdb
+
+server:
+  forward-headers-strategy: framework

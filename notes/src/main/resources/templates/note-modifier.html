@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier une note</title>
+</head>
+<body>
+
+<h1>Modifier une note</h1>
+
+<p>
+  <a th:href="@{/notes/ui/patient/{patientId}(patientId=${patientId})}">⬅ Retour aux notes</a>
+</p>
+
+<hr>
+
+<form th:action="@{/notes/ui/modifier/{id}(id=${note.id})}"
+      th:object="${note}"
+      method="post">
+
+  <input type="hidden" th:field="*{patientId}"/>
+  <input type="hidden" th:field="*{id}"/>
+
+  <div>
+    <label for="note">Note :</label><br>
+    <textarea th:field="*{note}" id="note" rows="5" cols="50" required></textarea>
+  </div>
+
+  <br>
+  <button type="submit">Mettre à jour</button>
+</form>
+
+</body>
+</html>

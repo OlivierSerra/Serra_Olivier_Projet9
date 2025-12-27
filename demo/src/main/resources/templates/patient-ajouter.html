@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un patient</title>
+</head>
+<body>
+
+<h1>Ajouter un patient</h1>
+
+<a th:if="${patient.id != null}"
+   th:href="@{'/patients/ui/detail/' + ${patient.id}}">
+    Voir risque
+</a>
+
+<p>
+    <a th:href="@{/patients/ui/liste}"> Retour à la liste</a>
+</p>
+
+<form th:action="@{/patients/ui/ajouter}" th:object="${patient}" method="post">
+    <div>
+        <label>Nom :</label>
+        <input type="text" th:field="*{lastName}">
+    </div>
+    <div>
+        <label>Prénom :</label>
+        <input type="text" th:field="*{firstName}">
+    </div>
+    <div>
+        <label>Date de naissance :</label>
+        <input type="date" th:field="*{birthDate}" lang="en-US">
+    </div>
+    <div>
+        <label>Genre :</label>
+
+        <label>
+            <input type="radio" th:field="*{gender}" value="M">
+            Masculin
+        </label>
+
+        <label>
+            <input type="radio" th:field="*{gender}" value="F">
+            Féminin
+        </label>
+    </div>
+    <div>
+        <label>Adresse :</label>
+        <input type="text" th:field="*{address}">
+    </div>
+    <div>
+        <label>Téléphone :</label>
+        <input type="text" th:field="*{phoneNumber}">
+    </div>
+
+    <br>
+    <button type="submit">Créer</button>
+</form>
+
+</body>
+</html>

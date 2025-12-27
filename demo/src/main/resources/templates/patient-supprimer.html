@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer un patient</title>
+</head>
+<body>
+
+<h1>Supprimer un patient</h1>
+
+<a th:href="@{'/patients/ui/detail/' + ${patient.id}}">
+    Voir risque
+</a>
+
+<p>
+    <a th:href="@{/patients/ui/liste}">Retour à la liste</a>
+</p>
+
+<p>Voulez-vous vraiment supprimer ce patient ?</p>
+
+<ul>
+    <li><strong th:text="${patient.lastName} + ' ' + ${patient.firstName}"></strong></li>
+    <li th:text="${patient.birthDate}"></li>
+    <li th:text="${patient.gender}"></li>
+    <li th:text="${patient.address}"></li>
+    <li th:text="${patient.phoneNumber}"></li>
+</ul>
+
+<form th:action="@{'/patients/ui/supprimer/' + ${patient.id}}" method="post">
+    <button type="submit">Oui, supprimer</button>
+</form>
+
+</body>
+</html>

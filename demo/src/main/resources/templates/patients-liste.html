@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des patients</title>
+</head>
+<body>
+
+<h1>Liste des patients</h1>
+
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Déconnexion</button>
+</form>
+
+<p>
+    <a th:href="@{/patients/ui/ajouter}"> Ajouter un patient</a>
+</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Date de naissance</th>
+        <th>Genre</th>
+        <th>Adresse</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.firstName}"></td>
+        <td th:text="${patient.lastName}"></td>
+        <td th:text="${#temporals.format(patient.birthDate, 'yyyy-MM-dd ')}"></td>
+        <td th:text="${patient.gender}"></td>
+        <td th:text="${patient.address}"></td>
+        <td th:text="${patient.phoneNumber}"></td>
+
+        <td>
+            &nbsp;
+            <a th:href="@{'/patients/ui/modifier/' + ${patient.id}}">Modifier le patient</a>
+            | <a th:href="@{'/patients/ui/supprimer/' + ${patient.id}}">Supprimer le patient</a>
+            | <a th:href="@{'/notes/ui/patient/' + ${patient.id}}">Notes</a>
+            | <a th:href="@{'/patients/ui/detail/' + ${patient.id}}">Détail/Risque</a>
+            &nbsp;
+        </td>
+    </tr>
+
+
+
+    </tbody>
+</table>
+
+</body>
+</html>

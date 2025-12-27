@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+medilabo:
+  patient-service:
+    base-url: http://patientservice:8081
+  notes-service:
+    base-url: http://noteservice:8082

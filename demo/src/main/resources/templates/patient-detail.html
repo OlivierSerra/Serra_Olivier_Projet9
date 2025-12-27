@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Détail du patient</title>
+</head>
+<body>
+
+<h1>Détail du patient</h1>
+
+<p><a th:href="@{/patients/ui/liste}"> Retour à la liste</a></p>
+
+<h2>Informations du patient</h2>
+<p>Nom : <strong th:text="${patient.lastName}"></strong></p>
+<p>Prénom : <strong th:text="${patient.firstName}"></strong></p>
+<p>Genre : <strong th:text="${patient.gender}"></strong></p>
+<p>Date de naissance :
+  <span th:text="${#temporals.format(patient.birthDate, 'dd/MM/yyyy')}"></span>
+</p>
+<p>Address : <strong th:text="${patient.address}"></strong></p>
+<p>PhoneNumber : <strong th:text="${patient.phoneNumber}"></strong></p>
+
+<hr>
+
+<h2>Évaluation du risque de diabète</h2>
+
+<p>
+  Niveau de risque :
+  <strong th:text="${risk.riskLevel}"></strong>
+</p>
+
+<p>
+  Nombre de déclencheurs :
+  <span th:text="${risk.triggerCount}"></span>
+</p>
+
+</body>
+</html>
