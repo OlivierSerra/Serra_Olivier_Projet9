@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 /**
  *
- * gère
+ * gère les CRUD entre le repository et controller - fait le lien
  * */
 @Service
 public class PatientService {
@@ -20,10 +20,12 @@ public class PatientService {
     }
     //
     public List<PatientModel> findAll() {
+
         return patientRepository.findAll();
     }
 
     public PatientModel findById(Long id) {
+
         return patientRepository.findById(id).orElse(null);
     }
 
@@ -34,6 +36,7 @@ public class PatientService {
     }
 
     public PatientModel save(PatientModel patient) {
+
         return patientRepository.save(patient);
     }
 

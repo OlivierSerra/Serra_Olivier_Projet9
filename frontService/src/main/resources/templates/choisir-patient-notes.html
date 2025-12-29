@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Notes - choisir patient</title></head>
+<body>
+<h2>Notes: choisir un patient</h2>
+
+<form th:action="@{/notes/ui/choisir-patient}" method="post">
+    <label>ID patient :</label>
+    <input type="number" name="patientId" min="1" required>
+    <button type="submit">Voir les notes</button>
+</form>
+
+<p><a th:href="@{/}">Retour portail</a></p>
+</body>
+</html>

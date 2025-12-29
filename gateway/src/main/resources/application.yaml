@@ -17,6 +17,16 @@ spring:
           predicates:
             - Path=/
 
+        - id: notes-ui-choisir-patient
+          uri: http://frontservice:8080
+          predicates:
+            - Path=/notes/ui/choisir-patient
+
+        - id: risk-ui-choisir-patient
+          uri: http://frontservice:8080
+          predicates:
+            - Path=/risk/ui/choisir-patient
+
         - id: patients-ui
           uri: http://patientservice:8081
           predicates:
@@ -48,5 +58,3 @@ spring:
           uri: http://riskservice:8083
           predicates:
             - Path=/risk/**
-
-

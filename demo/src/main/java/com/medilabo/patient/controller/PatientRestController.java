@@ -39,7 +39,7 @@
 
         // =======================
         // DÉTAIL D'UN PATIENT
-        //retorune les détzails d'un  patients
+        //retourne les détzails d'un  patients
         // =======================
         @GetMapping("/{id}")
         public ResponseEntity<PatientModel> getPatientById(@PathVariable Long id) {

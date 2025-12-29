@@ -1,8 +1,8 @@
-# IntelliJ
+# fichiers IntelliJ ignorés
 .idea/
 *.iml
 
-# Maven / Gradle
+# fichiers Maven
 target/
 **/target/
 

@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * commuinique avec le service Risk
+ * communique avec le service Risk + juste de comm + pas repository + pourrait être @composant
+ * appartient à la couche métier
  * */
 @Service
 public class RiskClient {

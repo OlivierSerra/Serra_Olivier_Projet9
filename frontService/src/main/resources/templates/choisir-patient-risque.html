@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Risque - Choisir un patient</title>
+</head>
+<body>
+
+<h2>Risque: choisir un patient</h2>
+
+<form th:action="@{/risk/ui/choisir-patient}" method="post">
+    <label for="patientId">ID patient :</label>
+    <input id="patientId" type="number" name="patientId" min="1" required>
+    <button type="submit">Voir le risque</button>
+</form>
+
+<p><a th:href="@{/}">Retour portail</a></p>
+
+</body>
+</html>
