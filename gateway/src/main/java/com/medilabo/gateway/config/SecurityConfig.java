@@ -25,15 +25,19 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
+                //Permet de ne pas utiliser de token
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
 
                 .authorizeExchange(exchanges -> exchanges
+                        // tout le monde peut arriver sur page Login
+                        //pour le reste, authentification exigée
                         .pathMatchers("/login", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
                         .anyExchange().authenticated()
                 )
-
+                //authentification par formulaire
                 .formLogin(form -> form.loginPage("/login"))
-
+                //procédure de deconnexion => avec redirection vers /login
+                //
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessHandler(
@@ -42,12 +46,13 @@ public class SecurityConfig {
                                 }}
                         )
                 )
-
+                //Pas authentoiocation HTTP Basic, meme si route protégée
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .build();
     }
 
     @Bean
+    // MapReactiveUserDetailsService = UserDetailsService en reactive
     public MapReactiveUserDetailsService users(PasswordEncoder encoder) {
         return new MapReactiveUserDetailsService(
                 User.withUsername("user")

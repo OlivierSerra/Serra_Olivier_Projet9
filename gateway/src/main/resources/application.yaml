@@ -58,9 +58,3 @@ spring:
           uri: http://riskservice:8083
           predicates:
             - Path=/risk/**
-
-logging:
-  level:
-    org.springframework.web: DEBUG
-    org.springframework.security: DEBUG
-    org.thymeleaf: DEBUG

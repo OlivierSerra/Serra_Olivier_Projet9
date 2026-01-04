@@ -37,12 +37,12 @@ public class NoteController {
     }
 
     // injecte une nouvelle note
-    @PostMapping
-    public ResponseEntity<Note> addNote(@RequestBody Note note) {
-        Note created = service.addNote(note);
-        URI location = URI.create("/notes/" + created.getId());
-        return ResponseEntity.created(location).body(created);
-    }
+        @PostMapping
+        public ResponseEntity<Note> addNote(@RequestBody Note note) {
+            Note created = service.addNote(note);
+            URI location = URI.create("/notes/" + created.getId());
+            return ResponseEntity.created(location).body(created);
+        }
 
     // Met à jour une note existante
     @PutMapping("/{id}")
