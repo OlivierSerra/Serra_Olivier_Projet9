@@ -9,9 +9,7 @@ target/
 # Spring Boot build artifacts
 BOOT-INF/
 
-# Coverage / reports
-coverage/
-**/coverage/
+
 
 # Logs
 *.log
